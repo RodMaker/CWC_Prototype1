@@ -1,2 +1,3 @@
 # CWC_Prototype1
- create with code prototype 1 - challenge 1 completed plus bonus features and extra ones like a wheel controller
+prototype 1 - unity - junior programmer pathway - create with code 1 - bonus features - challenge 1
+plus some extra stuff like a simple wheel controller
