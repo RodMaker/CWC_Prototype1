@@ -6,14 +6,16 @@ public class PlayerController : MonoBehaviour
 {
     // Private Variables
     // Locomotion
-    private float speed = 20f;
+    private float speed = 20f; //(old code)
+    private float horsePower = 20f;
     private float turnSpeed = 45f;
     private float horizontalInput;
     private float verticalInput;
+    private Rigidbody playerRb;
 
     // Public Variables
     // Camera Switch
-    // (Old Code) public KeyCode switchCameraKey;
+    //public KeyCode switchCameraKey; (old code)
     public Camera camera1;
     public Camera camera2;
     public Camera camera3;
@@ -32,7 +34,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerRb = GetComponent<Rigidbody>(); // dar o check
     }
 
     // Changed from normal Update to FixedUpdate
@@ -51,7 +53,8 @@ public class PlayerController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical" + inputID);
 
         // Move the vehicle forward
-        transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
+        transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput); //(old code)
+        //playerRb.AddRelativeForce(Vector3.forward * verticalInput * horsePower);
         
         // Rotate the vehicle
         transform.Rotate(Vector3.up, Time.deltaTime * turnSpeed * horizontalInput);
@@ -94,6 +97,20 @@ public class PlayerController : MonoBehaviour
 
         if (horizontalInput > 0)
         {
+            wheelsFL.transform.localRotation = Quaternion.AngleAxis(30, wheelsFL.transform.up);
+            wheelsFR.transform.localRotation = Quaternion.AngleAxis(30, wheelsFL.transform.up);
+        }
+        else if (horizontalInput < 0)
+        {
+            wheelsFL.transform.localRotation = Quaternion.AngleAxis(-30, wheelsFL.transform.up);
+            wheelsFR.transform.localRotation = Quaternion.AngleAxis(-30, wheelsFL.transform.up);
+        }
+
+        /*
+        Tentativa
+
+        if (horizontalInput > 0)
+        {
             wheelsFL.transform.Rotate(Vector3.up * rotationSpeed2 * Time.deltaTime);
             wheelsFR.transform.Rotate(Vector3.up * rotationSpeed2 * Time.deltaTime);
         }
@@ -102,10 +119,10 @@ public class PlayerController : MonoBehaviour
             wheelsFL.transform.Rotate(Vector3.down * rotationSpeed2 * Time.deltaTime);
             wheelsFR.transform.Rotate(Vector3.down * rotationSpeed2 * Time.deltaTime);
         }
+        
+        if (wheelsFL.transform.rotation.y < 30 && wheelsFL.transform.rotation.y > 30)
 
-        //if (wheelsFL.transform.rotation.y < 30 && wheelsFL.transform.rotation.y > 30)
-
-        /*if (horizontalInput > 0)
+        if (horizontalInput > 0)
         {
             wheelsFL.transform.Rotate(0,45,0 * Time.deltaTime);
             wheelsFR.transform.Rotate(0,45,0 * Time.deltaTime);
@@ -114,6 +131,13 @@ public class PlayerController : MonoBehaviour
         {
             wheelsFL.transform.Rotate(0,-45,0 * Time.deltaTime);
             wheelsFR.transform.Rotate(0,-45,0 * Time.deltaTime);
-        }*/
+        }
+
+        // vantreeseba input
+        if(horizInput > 0) 
+        {
+            wheelsFL.transform.localRotation = Quaternion(angle, wheelsFL.transform.up);
+        }
+        */
     }
 }
