@@ -1,6 +1,6 @@
 # CWC_Prototype1
 prototype 1 - unity - junior programmer pathway - create with code 1 - challenge 1 completed - bonus features  
-and some extras like a wheel collider  
+6.2 research and troubleshooting added 
   
 Controls:  
 Player 1  
